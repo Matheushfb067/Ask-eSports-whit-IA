@@ -1,0 +1,134 @@
+/*Todas as propriedades de CSS terão descrição comentada, pois se
+de um aprofundamento de conceitos!*/
+
+/*Pré-formats padrão*/
+
+*{
+    border: none; /*nenhuma borda*/
+    margin: 0; /*sem espaço externo*/
+    padding: 0; /*sem espaço interno*/
+    box-sizing: border-box; /*set de dimensções das tags*/
+}
+
+body{
+    background-image: url("./assets/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-color: #121214;
+    color: white;
+}
+
+/*Reforça a fonte, uma vez que ela poderia estar acima, mas foi
+declarada em outro body. O  simbolo * é o Seletor Universal que 
+significa que todos as propriedades do serão aplicadasa todos os 
+elementos dentro da tag*/
+
+body * {
+    font-family: "Inter";
+    line-height: 160%; /*Espaço entre as letras do texto*/
+}
+
+header {
+    padding-top: 2rem; /*espaçamento de topo*/
+    text-align: center; /*Alinhamento central*/
+}
+
+/*rem = unidade de medida do root. É por padrão 16 pixels*/
+
+header img {
+    width: 15rem; /*largura da imagem*/
+}
+
+main{
+    max-width: 36rem; /*largura maxima da main*/
+    width: 90%;
+    margin: 3rem auto; /*seta 3rem de altura maxima e deixa as laterais automaticas*/
+}
+
+section {
+    background-image: linear-gradient(90deg, #9572FC 0%, #43E7AD 50%, #E2D45C 100%); /*faz o fundo degrade em 90°(90deg) nas cores setadas*/
+    border-radius: 0.625rem; /*Aredonda as bordas da section*/
+    padding-top: 4px;
+}
+
+/*Preenchimento interno superior de 4px*/
+
+section > div{
+    padding: 2rem;
+    padding-top: 1.5rem;
+    border-radius: 0.5rem; /*Aredonda as bordas da div dentro da section*/
+    background-color: #2A2634;
+}
+
+section h2{
+    letter-spacing: -0.47px; /*Espaçamento entre letras*/
+}
+
+section p{
+    letter-spacing: -0.18; /*Espaçamento entre letras*/
+    color: #A1A1AA; /*muda a cor das letras da tag p*/
+}
+
+/*Animação da section:*/ 
+
+main section {
+    opacity: 0;
+    transform: translateY(2rem);
+
+    /*animarion serve para configurar a animação*/
+
+    animation-name: appear; /*nome da animação que tem que ser o mesmo da keyframe*/
+    animation-duration: 0.7s; /*duração da animação*/
+    animation-fill-mode: forwards; /*final da animação antonimo de backwards*/
+}
+
+@keyframes appear {
+    100% { /*de onde vai vir a transição e o que se quer ver*/
+        opacity: 1; /*opacidade de 0 a 1*/
+        transform: translateY(0); /*direção dos elementos*/
+    }
+}
+
+/*Propriedades flex-box*/
+
+form{
+    display: flex; /*Coloca todos elementos em linha para estilização*/
+    gap: 0.85rem; /*espaçamento entre os elementos*/
+    flex-wrap: wrap; /*muda os elementos de linha quando saem dos limites da tag pai*/
+    margin: 1.25rem 0;
+}
+
+input, select {
+    all: unset; /*retira todas as pré configurações do elemento*/
+    border: 2px solid #9147FF;
+    border-radius: 0.5rem;
+    padding: 0.675rem;
+    font-size: 0.875rem;
+    background-color: #00000066;
+}
+
+input{
+    flex: 1; /*Pega o maximo de espaço disponivel e só o que sobrar ficará para o outro campo neste caso o input será dimensionado em linha*/
+}
+
+button {
+    width: 100%;
+    border: none;
+    background-image: linear-gradient(90deg,#9572FC 0%, #43E7AD 50%, #E2D45C 100%);
+    padding: 0.675rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.12px;
+
+    transition: all 0.3s; /*transição de qualquer propriedade definida no hover pelo tempo determinado*/
+}
+
+/*interação do mouse por cima do botão*/
+
+button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 1rem rgba(255, 248, 107, 0.2); /*Transição da cor do botão no hover*/
+}
