@@ -19,14 +19,47 @@ const perguntarIA = async (question, game, apiKey) => {
     const model = "gemini-2.0-flash";
     //Template Strings = ` `
     const geminiURL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`; // link API
-    const pergunta = `Olha, tenho esse jogo ${game} e queria saber ${question}`;
+    //Engenharia de prompt
+    const pergunta = `
+      ## Especialidade
+      Você é um especialista assistente de meta para o jogo ${game}
+
+      ## Tarefa
+      Você deve responder as perguntas do usuário com base no seu conhecimento do jogo, estratégias, build e dicas
+
+      ## Regras
+      - Se você não sabe a resposta, responda com 'Não sei' e não tente inventar uma resposta.
+      - Se a pergunta não está relacionada ao jogo, responda com 'Essa pergunta não está relacionada ao jogo'
+      - Considere a data atual ${new Date().toLocaleDateString()}
+      - Faça pesquisas atualizadas sobre o patch atual, baseado na data atual, para dar uma resposta coerente.
+      - Nunca responsda itens que vc não tenha certeza de que existe no patch atual.
+
+      ## Resposta
+      - Economize na resposta, seja direto e responda no máximo 500 caracteres
+      - Responda em markdown
+      - Não precisa fazer nenhuma saudação ou despedida, apenas responda o que o usuário está querendo.
+
+      ## Exemplo de resposta
+      pergunta do usuário: Melhor build rengar jungle
+      resposta: A build mais atual é: \n\n **Itens:**\n\n coloque os itens aqui.\n\n**Runas:**\n\nexemplo de runas\n\n
+
+      ---
+      Aqui está a pergunta do usuário: ${question}
+      `
 
     // Objeto em js sem nome fica entre = [{}]
     const contents = [{
+      //Agente
+      role: "user",
       parts: [{
         text: pergunta
       }]
     }];
+
+    //Agente
+    const tools = [{
+      google_search: {}
+    }]
 
     //chamada API - cominicação com o Gemini
 
@@ -39,7 +72,9 @@ const perguntarIA = async (question, game, apiKey) => {
     },
     //stringify - serve para transformar um obj javascript para o formato JSON
     body: JSON.stringify({
-      contents
+      contents,
+      //Agente
+      tools
     })
   })
 
@@ -71,7 +106,7 @@ const enviarFormulario = async (event) => {
     // Perguntar para IA: 
     const text = await perguntarIA(question, game, apiKey);
     aiResponse.querySelector('.response-content').innerHTML = markdownToHTML(text);
-
+    aiResponse.classList.remove('hidden');
 
   }catch(error){
     console.log('Erro: ', error);
@@ -86,3 +121,7 @@ const enviarFormulario = async (event) => {
 // Adicione um ouvidor de evento = sempre que ocorrer um evento
 // submit = tipo do evento
 form.addEventListener('submit', enviarFormulario);
+
+/*Exercicio de treino: fazer um segundo prompt especifico para treinar a IA com as informações de valorat
+e fazer uma condição para verificar se a seleção do jogo é igual a valorant ou a outra opção selecionada, 
+fazer isso para os demais jogos também*/

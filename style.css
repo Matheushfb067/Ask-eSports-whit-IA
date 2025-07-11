@@ -141,6 +141,25 @@ button:disabled {
     color: black
 }
 
+#aiResponse {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    border-left: 4px solid #43E7AD;
+}
+
+#aiResponse ul{
+    padding: 1.5rem;
+}
+
+#aiResponse p {
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
 .loading {
     animation: pulse 1.5s infinite;
 }
