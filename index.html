@@ -22,19 +22,19 @@
                 <p>Pergunte sobre estratégias, build e dicas para seus 
                 jogos!</p>
 
-                <form>
-                    <input type="password" placeholder="Informe a API key do Gemini">
+                <form id="form">
+                    <input id="apiKey" type="password" placeholder="Informe a API key do Gemini">
 
-                    <select>
+                    <select id="gameSelect">
                         <option value="">Selecione um jogo</option>
                         <option value="valorant">Valorant</option>
                         <option value="LOL">League of Legends</option>
                         <option value="csgo">CS:GO</option>
                     </select>
 
-                    <input type="text" placeholder="Melhor build para ADC..." required>
+                    <input id="questionInput" type="text" placeholder="Melhor build para ADC..." required>
                 
-                    <button>
+                    <button id="askButton">
                         Perguntar
                     </button>
                 </form>
@@ -47,5 +47,8 @@
             </div>
         </section>
     </main>
+    <!--Biblioteca que transforma a resposta da IA em Markdown - HTML-->
+    <script src="  https://unpkg.com/showdown/dist/showdown.min.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>

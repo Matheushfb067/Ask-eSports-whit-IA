@@ -132,3 +132,21 @@ button:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 1rem rgba(255, 248, 107, 0.2); /*Transição da cor do botão no hover*/
 }
+
+button:disabled {
+    transition: none; /*sem transição*/
+    transform: translate(0);
+    box-shadow: initial; /*busca a informação inicial*/
+    cursor: not-allowed; 
+    color: black
+}
+
+.loading {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        opacity: 0.5;
+    }
+}
