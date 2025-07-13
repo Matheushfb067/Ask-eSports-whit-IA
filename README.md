@@ -34,7 +34,7 @@ Este projeto é um assistente de meta para jogos eletrônicos, desenvolvido dura
 ## 🚀 Deploy
 
 O projeto está disponível em produção no Vercel:  
-[https://let-me-ask-ia-nlw-back-end.vercel.app/](https://let-me-ask-ia-nlw-back-end.vercel.app/)
+[[https://let-me-ask-ia-nlw-back-end.vercel.app/](https://let-me-ask-ia-nlw-back-end.vercel.app/)](https://ask-e-sports-whit-ia.vercel.app/)
 
 ---
 
